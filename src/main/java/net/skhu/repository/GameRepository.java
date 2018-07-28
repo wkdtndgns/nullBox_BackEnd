@@ -1,5 +1,9 @@
 package net.skhu.repository;
 
-public class GameRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import net.skhu.domain.game;
+
+public interface GameRepository extends JpaRepository<game, Integer> {
 
 }
