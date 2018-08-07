@@ -43,11 +43,26 @@ public class MainController {
 
     
     @RequestMapping("question")
-    public List<question> question(@RequestParam Map<String, String> ids) {  	//  map 이용해 호출하든지   requestBody를 이용해서 list 객체를 호출해야한
+    public List<question> question(@RequestParam("ids") String ids) {  	//  map 이용해 호출하든지   requestBody를 이용해서 list 객체를 호출해야한
     	
-    	List<question> list = question.findByCategoryIdOrCategoryId(1,2);
+    	int[] id = new int[10];
+    	int i=0;
+    	String[] arr = ids.split(",");
+    	for(String s : arr) {
+    		id[i]=Integer.valueOf(s);
+    		i++;
+    	}
+    	System.out.println(id[4]);
+    	List<question> list = question.find(id[0], id[1], id[2],id[3],id[4],id[5]);
+     	
+    	return list;
+    }
+    
+    @RequestMapping("question/all")
+    public List<question> questionAll() {  	//  map 이용해 호출하든지   requestBody를 이용해서 list 객체를 호출해야한
     	
-    	System.out.println(ids.toString());
+    	
+    	List<question> list = question.findAll();
      	
     	return list;
     }
