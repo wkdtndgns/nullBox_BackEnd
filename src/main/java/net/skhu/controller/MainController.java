@@ -1,7 +1,7 @@
 package net.skhu.controller;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -55,6 +55,8 @@ public class MainController {
     	System.out.println(id[4]);
     	List<question> list = question.find(id[0], id[1], id[2],id[3],id[4],id[5]);
      	
+    	Collections.shuffle(list); 
+    	
     	return list;
     }
     
@@ -63,7 +65,8 @@ public class MainController {
     	
     	
     	List<question> list = question.findAll();
-     	
+    	Collections.shuffle(list); 
+    	
     	return list;
     }
     
