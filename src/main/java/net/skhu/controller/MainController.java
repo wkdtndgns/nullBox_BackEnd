@@ -39,21 +39,31 @@ public class MainController {
     	
     	return list;
     }
+    @RequestMapping("category/{id1}/{id2}")
+    public List<category> categoryDifficult(@PathVariable("id1") int id1,@PathVariable("id2") int id2) {  	
+    	List<category> list = category.findByGameIdAndDifficult(id1,id2);
+    	
+    	Collections.shuffle(list); 
+    	
+    	return list;
+    }
     
 
     
     @RequestMapping("question")
     public List<question> question(@RequestParam("ids") String ids) {  	//  map 이용해 호출하든지   requestBody를 이용해서 list 객체를 호출해야한
     	
-    	int[] id = new int[10];
+    	int[] id = new int[18];
     	int i=0;
     	String[] arr = ids.split(",");
     	for(String s : arr) {
     		id[i]=Integer.valueOf(s);
     		i++;
     	}
-    	System.out.println(id[4]);
-    	List<question> list = question.find(id[0], id[1], id[2],id[3],id[4],id[5]);
+    	
+    	List<question> list = question.find(id[0], id[1], id[2],id[3],id[4],id[5],
+    			id[6], id[7], id[8],id[9],id[10],id[11],id[12], id[13], id[14],id[15],id[16],id[17]
+    								);
      	
     	Collections.shuffle(list); 
     	

@@ -10,5 +10,6 @@ import net.skhu.domain.category;
 public interface CategoryRepository extends JpaRepository<category, Integer> {
 
 	List<category> findByGameId(int id);
+	List<category> findByGameIdAndDifficult(int id1, int id2);
 
 }

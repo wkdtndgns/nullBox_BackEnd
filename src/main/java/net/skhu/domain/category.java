@@ -12,6 +12,8 @@ public class category {
     int id;
 	int gameId;
 	String name;
+	int difficult;
+	
 	public int getId() {
 		return id;
 	}
@@ -30,6 +32,14 @@ public class category {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public int getDifficult() {
+		return difficult;
+	}
+	public void setDifficult(int difficult) {
+		this.difficult = difficult;
+	}
+	
 	
 	
 
