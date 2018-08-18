@@ -13,35 +13,31 @@ import org.springframework.web.bind.annotation.RestController;
 import net.skhu.domain.category;
 import net.skhu.domain.game;
 import net.skhu.domain.question;
-import net.skhu.repository.CategoryRepository;
-import net.skhu.repository.GameRepository;
-import net.skhu.repository.QuestionRepository;
+import net.skhu.service.*;
 
 @RestController
 @RequestMapping("api")
 public class MainController {
 
-	@Autowired GameRepository game;
-	@Autowired CategoryRepository category;
-	@Autowired QuestionRepository question;
-	
+	@Autowired MainService mainService;
+
     @RequestMapping("list")
-    public List<game> list(Model model) {
-        List<game> list = game.findAll();
-        model.addAttribute("list", list);
-  
+    public List<game> list() {
+        List<game> list = mainService.gameAll();
+        
         return list;
     }
        
     @RequestMapping("category/{id}")
     public List<category> category(@PathVariable("id") int id) {  	
-    	List<category> list = category.findByGameId(id);   	
+    	List<category> list = mainService.findCategoryByGameId(id);
     	
     	return list;
     }
+    
     @RequestMapping("category/{id1}/{id2}")
     public List<category> categoryDifficult(@PathVariable("id1") int id1,@PathVariable("id2") int id2) {  	
-    	List<category> list = category.findByGameIdAndDifficult(id1,id2);
+    	List<category> list = mainService.findCategoryByGameIdAndDifficult(id1, id2);
     	
     	Collections.shuffle(list); 
     	
@@ -61,7 +57,7 @@ public class MainController {
     		i++;
     	}
     	
-    	List<question> list = question.find(id[0], id[1], id[2],id[3],id[4],id[5],
+    	List<question> list = mainService.findQuestion(id[0], id[1], id[2],id[3],id[4],id[5],
     			id[6], id[7], id[8],id[9],id[10],id[11],id[12], id[13], id[14],id[15],id[16],id[17]
     								);
      	
@@ -72,9 +68,8 @@ public class MainController {
     
     @RequestMapping("question/all")
     public List<question> questionAll() {  	//  map 이용해 호출하든지   requestBody를 이용해서 list 객체를 호출해야한
-    	
-    	
-    	List<question> list = question.findAll();
+ 	
+    	List<question> list = mainService.questionAll();
     	Collections.shuffle(list); 
     	
     	return list;

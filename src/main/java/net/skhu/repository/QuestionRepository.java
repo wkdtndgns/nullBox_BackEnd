@@ -11,8 +11,8 @@ import net.skhu.domain.question;;
 
 public interface QuestionRepository extends JpaRepository<question, Integer> {
 	
+	List<question> findAll();
 	
-	List<question> findByCategoryIdOrCategoryId(int id1,int id2);
 	
     @Query("SELECT q.id , q.name FROM question q "
     		+ "WHERE categoryId =?1 or categoryId=?2 or categoryId= ?3 "
