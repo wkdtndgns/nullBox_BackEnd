@@ -17,7 +17,7 @@ import net.skhu.domain.question;
 import net.skhu.service.*;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000","http://sellery.co.s3-website-us-east-1.amazonaws.com"})
+//@CrossOrigin(origins = {"http://localhost:3000","http://sellery.co.s3-website-us-east-1.amazonaws.com"})
 @RequestMapping("api")
 public class MainController {
 
